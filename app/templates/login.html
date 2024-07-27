@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% block title %} Home Page {% endblock%}
+{% block content %}
+<div class="login_portal_div">
+    <div class="title_div">
+        {% csrf_token %}
+        <h1 class="title_text">{{ type }} Login</h1>
+    </div>
+    <div class="login_div">
+        <form>
+            <!-- Email input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+                <input type="email" id="form2Example1" class="form-control" />
+                <label class="form-label" for="form2Example1">Email address</label>
+            </div>
+            
+            <!-- Password input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+                <input type="password" id="form2Example2" class="form-control" />
+                <label class="form-label" for="form2Example2">Password</label>
+            </div>
+        
+            <!-- 2 column grid layout for inline styling -->
+            <div class="row mb-4">
+            
+                <div class="col">
+                    <!-- Simple link -->
+                    <a class="forgot" href="">Forgot password?</a>
+                </div>
+            </div>
+        
+            <!-- Submit button -->
+            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">Sign in</button>
+        </form>
+    </div>
+
+    
+</div>
+
+{% endblock %}

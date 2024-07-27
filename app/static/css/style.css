@@ -4,6 +4,7 @@ body {
 
 }
 
+
 .container {
     height: 100vh;
     display: flex;
@@ -13,7 +14,10 @@ body {
 
 }
 
-    .portal_div {
+    /* HOME PAGE */
+
+
+    .home_portal_div {
         height:60%;
         width: 100%;
         display: flex;
@@ -80,3 +84,63 @@ body {
                     border-radius: 5px;
 
                 }
+
+    /* HOME PAGE */
+
+
+    /* LOGIN PAGE */
+
+    .login_portal_div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        height:60%;
+        width: 100%;
+        background-color: #00a694;
+        border: solid;
+        border-width: 5px;
+        border-color: black;
+        border-radius: 20px;
+    }
+
+    .title_div {
+        display: flex;
+        justify-content: space-around;
+    }
+
+        .title_text {
+            font-weight:bolder;
+            color: white;
+            font-size: 50px;
+        }
+
+    .login_div {
+        display: flex;
+        width:90%;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .mb-4 {
+            color: white;
+        }
+
+
+        .btn-primary {
+            background-color:#f7941f;
+            border-color: black;
+        }
+
+        .col {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .forgot {
+            color: white;
+            text-decoration: underline;
+        }
+
+
