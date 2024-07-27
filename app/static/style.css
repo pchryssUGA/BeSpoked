@@ -1,0 +1,82 @@
+body {
+    background-color: #115270;
+    font-family: Montserrat, sans-serif;
+
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+    .portal_div {
+        height:60%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #00a694;
+        border: solid;
+        border-width: 5px;
+        border-color: black;
+        border-radius: 20px;
+
+    }
+
+        .portal_text_div {
+            text-align: center;
+            color: white;
+        }
+
+        .portal_login_div {
+            height:50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-radius: 20px;
+        }
+
+            .salesperson_login_div {
+                height: 50%;
+                width: 40%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #f7941f;
+                border: solid;
+                border-width: 3px;
+                border-color: black;
+                border-radius: 20px;
+            }
+
+                .salesperson_login_button {
+                    border-radius: 5px;
+
+                }
+
+            .manager_login_div {
+                height: 50%;
+                width: 40%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #f7941f;
+                border: solid;
+                border-width: 3px;
+                border-color: black;
+                border-radius: 20px;
+
+
+            }
+
+                .manager_login_button {
+                    font-family: Montserrat, sans-serif;
+                    border-radius: 5px;
+
+                }
