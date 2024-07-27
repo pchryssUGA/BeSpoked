@@ -1,7 +1,12 @@
 from django.contrib import admin
-from .models import Product, Salesperson, Customer, Sale, Discount
+from .models import Product, Salesperson, Customer, Sale, Discount, Manager
 
 # Register your models here.
+
+@admin.register(Manager)
+class ManagerAdmin(admin.ModelAdmin):
+    list_display = ('id', 'first_name', 'last_name', 'address', 'phone',
+                    'start_date', 'termination_date', 'username', 'password')
     
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -11,7 +16,7 @@ class ProductAdmin(admin.ModelAdmin):
 @admin.register(Salesperson)
 class SalespersonAdmin(admin.ModelAdmin):
     list_display = ('id', 'first_name', 'last_name', 'address', 'phone',
-                    'start_date', 'termination_date', 'manager')
+                    'start_date', 'termination_date', 'manager_id', 'username', 'password')
     
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
@@ -23,5 +28,5 @@ class SaleAdmin(admin.ModelAdmin):
     
 @admin.register(Discount)
 class DiscountAdmin(admin.ModelAdmin):
-    list_display = ('id', 'product', 'start_date', 'end_date', 'discount_percentage')
+    list_display = ('id', 'product', 'begin_date', 'end_date', 'discount_percentage')
     
