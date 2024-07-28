@@ -10,8 +10,7 @@
                 <form action='edit/' method='POST' style='display:contents'>
                     {% csrf_token %}
                     {% if table_type == 'product' %}
-                        <input type='hidden' name='edit_type', value='product'>
-                        <input type='hidden' name='edit_id', value='{{ val.id }}'>
+                        <input type='hidden' name='edit_type', value='Product'>
                         <tr>
                             <th></th>
                             <th>ID</th>
@@ -24,7 +23,8 @@
                             <th>Commision</th>
                         </tr>
                         {% for val in values %}
-                            <tr>
+                                <input type='hidden' name='edit_id', value='{{ val.id }}'>
+                                <tr>
                                 <td><input class='edit_button' type='submit' value='Edit'></td>
                                 <td>{{ val.id }}</td>
                                 <td>{{ val.name }}</td>
@@ -36,8 +36,7 @@
                                 <td>{{ val.commision_percentage }}</td>                            </tr>
                         {% endfor %}
                     {% elif table_type == 'salesperson' %}
-                        <input type='hidden' name='edit_type', value='salesperson'>
-                        <input type='hidden' name='edit_id', value='{{ val.id }}'>
+                        <input type='hidden' name='edit_type', value='Salesperson'>
                         <tr>
                             <th></th>
                             <th>ID</th>
@@ -49,7 +48,8 @@
                             <th>Termination_Date</th>                    
                             <th>Manager_ID</th>
                         </tr>
-                        {% for val in values %}
+                        {% for val in values %}                        
+                            <input type='hidden' name='edit_id', value='{{ val.id }}'>
                             <tr>
                                 <td><input class='edit_button' type='submit' value='Edit'></td>
                                 <td>{{ val.id }}</td>
@@ -63,8 +63,7 @@
                             </tr>
                         {% endfor %}
                     {% elif table_type == 'customer' %}
-                        <input type='hidden' name='edit_type', value='customer'>
-                        <input type='hidden' name='edit_id', value='{{ val.id }}'>
+                        <input type='hidden' name='edit_type', value='Customer'>
                         <tr>
                             <th></th>
                             <th>ID</th>
@@ -75,6 +74,7 @@
                             <th>Start_Date</th>
                         </tr>
                         {% for val in values %}
+                        <input type='hidden' name='edit_id', value='{{ val.id }}'>
                             <tr>
                                 <td><input class='edit_button' type='submit' value='Edit'></td>
                                 <td>{{ val.id }}</td>
@@ -86,8 +86,7 @@
                             </tr>
                         {% endfor %}
                     {% elif table_type == 'sale' %}
-                        <input type='hidden' name='edit_type', value='sale'>
-                        <input type='hidden' name='edit_id', value='{{ val.id }}'>
+                        <input type='hidden' name='edit_type', value='Sale'>
                         <tr>
                             <th></th>
                             <th>ID</th>
@@ -97,6 +96,7 @@
                             <th>Sale_Date</th>
                         </tr>
                         {% for val in values %}
+                            <input type='hidden' name='edit_id', value='{{ val.id }}'>
                             <tr>
                                 <td><input class='edit_button' type='submit' value='Edit'></td>
                                 <td>{{ val.id }}</td>
@@ -107,8 +107,7 @@
                             </tr>
                         {% endfor %}
                     {% elif table_type == 'discount' %}
-                        <input type='hidden' name='edit_type', value='discount'>
-                        <input type='hidden' name='edit_id', value='{{ val.id }}'>
+                        <input type='hidden' name='edit_type', value='Discount'>
                         <tr>
                             <th></th>
                             <th>ID</th>
@@ -118,6 +117,7 @@
                             <th>Discount_%</th>
                         </tr>
                         {% for val in values %}
+                            <input type='hidden' name='edit_id', value='{{ val.id }}'>
                             <tr>
                                 <td><input class='edit_button' type='submit' value='Edit'></td>
                                 <td>{{ val.id }}</td>

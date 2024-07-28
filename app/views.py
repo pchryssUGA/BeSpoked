@@ -6,10 +6,9 @@ from app.models import Manager, Product, Salesperson, Sale, Discount, Customer
 def manager(request):
     if request.method == 'POST':
         q = Manager.objects.all()
-        q = q.filter(username=request.POST.get('username'))
-        for man in q:
-            if man.password == request.POST.get('password'):
-                return render(request, 'manager.html', {'man': man})
+        q = q.filter(username=request.POST.get('username')).first()
+        if q.password == request.POST.get('password'):
+            return render(request, 'manager.html', {'man': q})
     return redirect(login)
 
 # Login portal for salespersons
@@ -40,4 +39,23 @@ def view(request):
 
 def edit(request):
     if request.method == 'POST':
-        return render(request, 'edit.html')
+        q = None
+        if request.POST.get('edit_type') == 'Product':
+            q = Product.objects.all()
+            print(q)
+            q = q.filter(id=int(request.POST.get('edit_id'))).first()
+        elif request.POST.get('view_type') == 'Salesperson':
+            q = Salesperson.objects.all()
+            q = q.filter(id=int(request.POST.get('edit_id'))).first()
+        elif request.POST.get('view_type') == 'Customer':
+            q = Customer.objects.all()
+            q = q.filter(id=int(request.POST.get('edit_id'))).first()
+        elif request.POST.get('view_type') == 'Sale':
+            q = Sale.objects.all()
+            q = q.filter(id=int(request.POST.get('edit_id'))).first()
+        elif request.POST.get('view_type') == 'Discount':
+            q = Discount.objects.all()
+            q = q.filter(id=int(request.POST.get('edit_id'))).first()
+        return render(request, 'edit.html', {'value' : q})
+    return redirect(request, 'manager.html')
+
