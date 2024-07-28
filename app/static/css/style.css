@@ -6,7 +6,7 @@ body {
 
 
 .container {
-    height: 90vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -169,5 +169,39 @@ body {
             .report_button:hover {
                 background-color: #f7941f;
             }
+
+    .view_content_div {
+        display: flex;
+        justify-content: space-around;
+        height: 100%;
+        width: 130%;
+    }
+
+        .view_database_div {
+
+            height:auto;
+            width: 100%;
+            background-color: #00a694;
+            border: solid;
+            border-width: 5px;
+            border-color: black;
+            border-radius: 20px;
+            overflow-x: auto;
+        }
+
+        .data_table {
+            max-width: 100%;
+            font-size: 80%;
+            background-color: white;
+            border-width: 3px;
+            border-collapse: collapse; 
+            margin-top: 6px;
+            margin-left: 6px;
+        }
+        
+        .data_table th, .data_table td {
+            border: 1px solid black; 
+            padding: 8px; 
+        }
 
 

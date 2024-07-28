@@ -19,19 +19,23 @@ def login(request):
 def view(request):
     if request.method == 'POST':
         q = None
+        table_type = None
         if request.POST.get('view_type') == 'Products':
             q = Product.objects.all()
+            table_type = 'product'
         elif request.POST.get('view_type') == 'Salespersons':
             q = Salesperson.objects.all()
+            table_type = 'salesperson'
         elif request.POST.get('view_type') == 'Customers':
             q = Customer.objects.all()
+            table_type = 'customer'
         elif request.POST.get('view_type') == 'Sales':
             q = Sale.objects.all()
+            table_type = 'sale'
         elif request.POST.get('view_type') == 'Discounts':
             q = Discount.objects.all()
-        for val in q:
-            print(val)
-        return render(request, 'view.html', {'values': q})
+            table_type = 'discount'
+        return render(request, 'view.html', {'values': q, 'table_type': table_type})
     return redirect(request, 'manager.html')
 
 

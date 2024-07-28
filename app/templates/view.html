@@ -4,13 +4,141 @@
     <div class="title_div">
         <h1 class="title_text"></h1>
     </div>
-    <div class="manager_content_div"> 
-        {% csrf_token %}
-        {% for val in values %}
-            <td>{{ val }}</td>
-        {% endfor %}
+    {% csrf_token %}
+    <div class="view_content_div"> 
+        <div class="view_database_div">
+            <table class='data_table table table-striped' border='1'>
+                <form >
+                    {% if table_type == 'product' %}
+                        <input type='hidden' name='edit_type', value='product'>
+                        <input type='hidden' name='edit_id', value='{{ val.id }}'>
+                        <tr>
+                            <th></th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Manufacturer</th>
+                            <th>Style</th>
+                            <th>Purchase</th>
+                            <th>Sale</th>
+                            <th>Quantity</th>                    
+                            <th>Commision</th>
+                        </tr>
+                        {% for val in values %}
+                            <tr>
+                                <td><input class='edit_button' type='submit' value='Edit'></td>
+                                <td>{{ val.id }}</td>
+                                <td>{{ val.name }}</td>
+                                <td>{{ val.manufacturer }}</td>
+                                <td>{{ val.style }}</td>
+                                <td>{{ val.purchase_price }}</td>
+                                <td>{{ val.sale_price }}</td>                    
+                                <td>{{ val.quantity_on_hand }}</td>
+                                <td>{{ val.commision_percentage }}</td>                            </tr>
+                        {% endfor %}
+                    {% elif table_type == 'salesperson' %}
+                        <input type='hidden' name='edit_type', value='salesperson'>
+                        <input type='hidden' name='edit_id', value='{{ val.id }}'>
+                        <tr>
+                            <th></th>
+                            <th>ID</th>
+                            <th>Last</th>
+                            <th>First</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>Start_Date</th>
+                            <th>Termination_Date</th>                    
+                            <th>Manager_ID</th>
+                        </tr>
+                        {% for val in values %}
+                            <tr>
+                                <td><input class='edit_button' type='submit' value='Edit'></td>
+                                <td>{{ val.id }}</td>
+                                <td>{{ val.last_name }}</td>
+                                <td>{{ val.first_name }}</td>
+                                <td>{{ val.address }}</td>
+                                <td>{{ val.phone }}</td>
+                                <td>{{ val.start_date }}</td>                    
+                                <td>{{ val.termination_date }}</td>
+                                <td>{{ val.manager_id }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% elif table_type == 'customer' %}
+                        <input type='hidden' name='edit_type', value='customer'>
+                        <input type='hidden' name='edit_id', value='{{ val.id }}'>
+                        <tr>
+                            <th></th>
+                            <th>ID</th>
+                            <th>Last</th>
+                            <th>First</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>Start_Date</th>
+                        </tr>
+                        {% for val in values %}
+                            <tr>
+                                <td><input class='edit_button' type='submit' value='Edit'></td>
+                                <td>{{ val.id }}</td>
+                                <td>{{ val.last_name }}</td>
+                                <td>{{ val.first_name }}</td>
+                                <td>{{ val.address }}</td>
+                                <td>{{ val.phone }}</td>
+                                <td>{{ val.start_date }}</td>                    
+                            </tr>
+                        {% endfor %}
+                    {% elif table_type == 'sale' %}
+                        <input type='hidden' name='edit_type', value='sale'>
+                        <input type='hidden' name='edit_id', value='{{ val.id }}'>
+                        <tr>
+                            <th></th>
+                            <th>ID</th>
+                            <th>Product</th>
+                            <th>Salesperson</th>
+                            <th>Customer</th>
+                            <th>Sale_Date</th>
+                        </tr>
+                        {% for val in values %}
+                            <tr>
+                                <td><input class='edit_button' type='submit' value='Edit'></td>
+                                <td>{{ val.id }}</td>
+                                <td>{{ val.product }}</td>
+                                <td>{{ val.salesperson }}</td>
+                                <td>{{ val.customer }}</td>
+                                <td>{{ val.sale_date }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% elif table_type == 'discount' %}
+                        <input type='hidden' name='edit_type', value='discount'>
+                        <input type='hidden' name='edit_id', value='{{ val.id }}'>
+                        <tr>
+                            <th></th>
+                            <th>ID</th>
+                            <th>Product</th>
+                            <th>Begin_Date</th>
+                            <th>End_Date</th>
+                            <th>Discount_%</th>
+                        </tr>
+                        {% for val in values %}
+                            <tr>
+                                <td><input class='edit_button' type='submit' value='Edit'></td>
+                                <td>{{ val.id }}</td>
+                                <td>{{ val.product }}</td>
+                                <td>{{ val.begin_date }}</td>
+                                <td>{{ val.end_date }}</td>
+                                <td>{{ val.discount_percentage }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <h1>Invalid View Access</h1>
+                    {% endif %}
+                </form>
+            </table>
+        </div>
     </div>
 
 </div>
 
 {% endblock %}
+
+{% for val in values %}
+<tr>{{ val }}</td>
+{% endfor %}
