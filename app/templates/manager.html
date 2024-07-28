@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% block title %} Manager Portal {% endblock%}
+{% block content %}
+<div class="manager_portal_div">
+    <div class="title_div">
+        {% csrf_token %}
+        <h1 class="title_text">Welcome, {{ manager.first_name }} </h1>
+    </div>
+    <div class="manager_content_div"> 
+        <div class="manager_view_div">
+            <div class="title_div">
+                <h1 class="manager_text">Update DB</h1>
+            </div>
+            <div class="list">
+                <ul>
+                    <a href="view"><li class="list_item">Products</li></a>
+                    <a href="view"><li class="list_item">Salesersons</li></a>
+                    <a href="view"><li class="list_item">Customers</li></a>
+                    <a href="view"><li class="list_item">Products</li></a>
+                    <a href="view"><li class="list_item">Sales</li></a>
+                    <a href="view"><li class="list_item">Discounts</li></a>
+                </ul>
+            </div>
+        </div>
+
+        <div class="manager_view_div">
+            <div class="title_div">
+                <h1 class="manager_text">View DB</h1>
+            </div>
+            <div class="list">
+                <ul>
+                    <a href="view"><li class="list_item">Products</li></a>
+                    <a href="view"><li class="list_item">Salesersons</li></a>
+                    <a href="view"><li class="list_item">Customers</li></a>
+                    <a href="view"><li class="list_item">Products</li></a>
+                    <a href="view"><li class="list_item">Sales</li></a>
+                    <a href="view"><li class="list_item">Discounts</li></a>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="report_div">
+
+    </div>
+</div>
+
+{% endblock %}

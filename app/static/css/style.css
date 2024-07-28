@@ -11,82 +11,7 @@ body {
     justify-content: center;
     align-items: center;
 
-
 }
-
-    /* HOME PAGE */
-
-
-    .home_portal_div {
-        height:60%;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: #00a694;
-        border: solid;
-        border-width: 5px;
-        border-color: black;
-        border-radius: 20px;
-
-    }
-
-        .portal_text_div {
-            text-align: center;
-            color: white;
-        }
-
-        .portal_login_div {
-            height:50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            border-radius: 20px;
-        }
-
-            .salesperson_login_div {
-                height: 50%;
-                width: 40%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background-color: #f7941f;
-                border: solid;
-                border-width: 3px;
-                border-color: black;
-                border-radius: 20px;
-            }
-
-                .salesperson_login_button {
-                    border-radius: 5px;
-
-                }
-
-            .manager_login_div {
-                height: 50%;
-                width: 40%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background-color: #f7941f;
-                border: solid;
-                border-width: 3px;
-                border-color: black;
-                border-radius: 20px;
-
-
-            }
-
-                .manager_login_button {
-                    font-family: Montserrat, sans-serif;
-                    border-radius: 5px;
-
-                }
-
-    /* HOME PAGE */
-
 
     /* LOGIN PAGE */
 
@@ -142,5 +67,69 @@ body {
             color: white;
             text-decoration: underline;
         }
+
+    .manager_portal_div {
+        width: 100%;
+        height: 80%;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .manager_content_div {
+            display: flex;
+            justify-content: space-around;
+            height: 100%;
+            width: 100%;
+        }
+
+        .manager_view_div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height:100%;
+            width: 45%;
+            background-color: #00a694;
+            border: solid;
+            border-width: 5px;
+            border-color: black;
+            border-radius: 20px;
+        }
+
+            
+            .manager_text {
+                font-weight:bolder;
+                color: white;
+                font-size: 30px;
+                text-decoration: underline;
+            }
+        
+        .list {
+            color: white;
+            font-size: 25px;
+            
+        }
+
+        .list ul {
+            padding-left: 0;
+            list-style-type: none;
+        }
+
+    .report_div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height:30%;
+        width: 90%;
+        background-color: #00a694;
+        border: solid;
+        border-width: 5px;
+        border-color: black;
+        border-radius: 20px;
+        margin-top:2%;
+    }
 
 

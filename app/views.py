@@ -1,16 +1,18 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
+from app.models import Manager
 
-# Create your views here.
 
-# Main portal view. Allows employees/managers find their respective portal
-def home(request):
-    return render(request, "home.html")
+# Manager View
+def manager(request):
+    if request.method == 'POST':
+        q = Manager.objects.all()
+        q = q.filter(username=request.POST.get('username'))
+        for man in q:
+            if man.password == request.POST.get('password'):
+                return render(request, 'manager.html', {'man': man})
+    return redirect(request, 'manager.html')
 
 # Login portal for salespersons
 def login(request):
-    
-    if request.method == 'POST':
-        type = request.POST.get('login_type')
-        return render(request, 'login.html', {"type":type})
-    return render(request, "base.html")
+    return render(request, 'login.html')
 

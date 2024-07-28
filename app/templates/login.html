@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %} Home Page {% endblock%}
+{% extends "base.html" %} {% block title %} Login Portal {% endblock%}
 {% block content %}
 <div class="login_portal_div">
     <div class="title_div">
@@ -6,16 +6,18 @@
         <h1 class="title_text">{{ type }} Login</h1>
     </div>
     <div class="login_div">
-        <form>
+        <form action='manager/' method='POST' style='display:contents'>
+            {% csrf_token %}
+            <mat-card fxFlex="50" fxLayout="row">
             <!-- Email input -->
             <div data-mdb-input-init class="form-outline mb-4">
-                <input type="email" id="form2Example1" class="form-control" />
-                <label class="form-label" for="form2Example1">Email address</label>
+                <input name="username" type="username" id="form2Example1" class="form-control" />
+                <label class="form-label" for="form2Example1">Username</label>
             </div>
             
             <!-- Password input -->
             <div data-mdb-input-init class="form-outline mb-4">
-                <input type="password" id="form2Example2" class="form-control" />
+                <input name="password" type="password" id="form2Example2" class="form-control" />
                 <label class="form-label" for="form2Example2">Password</label>
             </div>
         
@@ -27,9 +29,10 @@
                     <a class="forgot" href="">Forgot password?</a>
                 </div>
             </div>
-        
+            
             <!-- Submit button -->
-            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">Sign in</button>
+            <input type='hidden' name='post_type', value='login_attempt'>
+            <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">Sign in</button>
         </form>
     </div>
 
