@@ -38,4 +38,6 @@ def view(request):
         return render(request, 'view.html', {'values': q, 'table_type': table_type})
     return redirect(request, 'manager.html')
 
-
+def edit(request):
+    if request.method == 'POST':
+        return render(request, 'edit.html')

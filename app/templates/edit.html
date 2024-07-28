@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% block title %} Manager Portal {% endblock%}
+{% block content %}
+<div class="manager_portal_div">
+    <div class="title_div">
+        <h1 class="title_text"></h1>
+    </div>
+    {% csrf_token %}
+    <div class="view_content_div"> 
+        <div class="view_database_div">
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% for val in values %}
+<tr>{{ val }}</td>
+{% endfor %}

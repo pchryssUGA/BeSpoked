@@ -4,11 +4,11 @@
     <div class="title_div">
         <h1 class="title_text"></h1>
     </div>
-    {% csrf_token %}
     <div class="view_content_div"> 
         <div class="view_database_div">
             <table class='data_table table table-striped' border='1'>
-                <form >
+                <form action='edit/' method='POST' style='display:contents'>
+                    {% csrf_token %}
                     {% if table_type == 'product' %}
                         <input type='hidden' name='edit_type', value='product'>
                         <input type='hidden' name='edit_id', value='{{ val.id }}'>
