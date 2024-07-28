@@ -69,6 +69,7 @@ class Salesperson(models.Model):
     def __str__(self):
         return str(self.id)+": "+self.first_name+" "+self.last_name
 
+# Customer Model
 class Customer(models.Model):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50)
@@ -84,6 +85,7 @@ class Customer(models.Model):
     def __str__(self):
         return str(self.id)+": "+self.first_name+" "+self.last_name
 
+# Sale Model
 class Sale(models.Model):
     id = models.AutoField(primary_key=True)
     product = models.IntegerField()
@@ -95,6 +97,7 @@ class Sale(models.Model):
         db_table = 'Sale'
         managed = False
     
+# Discount Model
 class Discount(models.Model):
     id = models.AutoField(primary_key=True)
     product = models.IntegerField()

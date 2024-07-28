@@ -1,3 +1,5 @@
+ /* BASE */
+
 body {
     background-color: #115270;
     font-family: Montserrat, sans-serif;
@@ -71,6 +73,8 @@ body {
             text-decoration: underline;
         }
 
+    /* LOGIN PAGE */
+
     /* MANAGER PAGE*/
 
     .manager_portal_div {
@@ -131,7 +135,6 @@ body {
         }
 
 
-
     .report_div {
         display: flex;
         flex-direction: row;
@@ -173,6 +176,10 @@ body {
             .report_button:hover {
                 background-color: #f7941f;
             }
+
+    /* MANAGER PAGE */
+
+    /* VIEW PAGE */
 
     .view_content_div {
         display: flex;
@@ -217,5 +224,7 @@ body {
         width: 60%;
 
     }
+
+    /* VIEW PAGE */
 
 

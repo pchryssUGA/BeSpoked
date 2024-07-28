@@ -9,28 +9,23 @@
         <form action='manager/' method='POST' style='display:contents'>
             {% csrf_token %}
             <mat-card fxFlex="50" fxLayout="row">
-            <!-- Email input -->
             <div data-mdb-input-init class="form-outline mb-4">
                 <input name="username" type="username" id="form2Example1" class="form-control-login" />
                 <label class="form-label" for="form2Example1">Username</label>
             </div>
             
-            <!-- Password input -->
             <div data-mdb-input-init class="form-outline mb-4">
                 <input name="password" type="password" id="form2Example2" class="form-control-login" />
                 <label class="form-label" for="form2Example2">Password</label>
             </div>
         
-            <!-- 2 column grid layout for inline styling -->
             <div class="row mb-4">
             
                 <div class="col">
-                    <!-- Simple link -->
                     <a class="forgot" href="">Forgot password?</a>
                 </div>
             </div>
             
-            <!-- Submit button -->
             <input type='hidden' name='post_type', value='login_attempt'>
             <input type='hidden' name='status', value='signing_in'>
             <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">Sign in</button>
