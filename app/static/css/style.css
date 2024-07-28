@@ -32,13 +32,11 @@ body {
     .title_div {
         display: flex;
         justify-content: center;
-
     }
 
         .title_text {
             font-weight:bolder;
             color: white;
-            font-size: 40px;
         }
 
     .login_div {

@@ -3,7 +3,7 @@
 <div class="manager_portal_div">
     <div class="title_div">
         {% csrf_token %}
-        <h1 class="title_text">Welcome,  {{ man.first_name }} {{ man.last_name }}  </h1>
+        <h1 class="title_text">Welcome,  {{ man.first_name }} </h1>
     </div>
     <div class="manager_content_div"> 
         <div class="manager_view_div">
@@ -40,10 +40,12 @@
         </div>
     </div>
     <div class="report_div">
-        <form method='POST'>  
-            <h6 style='color:white'>Input Desired Year & Fiscal Quarter</h1> 
+        <form action='report/' method='POST'> 
+            {% csrf_token %}
+            <input type='hidden' name='manager_id', value=' {{ man.id }}'>
+            <h6 style='color:white'>Fiscal Quarter</h1> 
             <div class='quarter_div'>
-                <input class="quarter_input" name="year" value='2024'/><input class="quarter_input"name="quarter" value='Q3'/>
+                <input class="quarter_input"name="quarter" value='Q4'/>
             </div>
             <div class='report_button_div'>
                 <input class='report_button' type='submit' name='view_type' value='Generate Report'>

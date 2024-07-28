@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from app.models import Manager, Product, Salesperson, Sale, Discount, Customer
-from datetime import datetime
+from datetime import datetime, date
 
 
 # Manager View
@@ -130,4 +130,55 @@ def result(request):
             discount.discount_percentage = float(request.POST.get('discount_percentage'))
             discount.save() 
     return render(request, 'result.html', {'result': 'Success!'})
+
+
+def report(request):
+    quarter = request.POST.get('quarter')
+    start_date = None
+    end_date = None
+    if quarter == 'Q1':
+        start_date = date(2023, 10, 1)
+        end_date = date(2023, 12, 31)
+    elif quarter == 'Q2':
+        start_date = date(2024, 1, 1)
+        end_date = date(2024, 3, 31)
+    elif quarter == 'Q3':
+        start_date = date(2024, 4, 1)
+        end_date = date(2024, 6, 30)
+    elif quarter == 'Q4':
+        start_date = date(2024, 7, 1)
+        end_date = date(2024, 9, 30)
+    sales = Sale.objects.filter(sale_date__range=(start_date, end_date))
+    salespeople = Salesperson.objects.all()
+    nameDict = {}
+    totalDict = {}
+    commissionDict = {}
+    for person in salespeople:
+        nameDict.update({person.id : person.first_name + ' ' + person.last_name})
+        totalDict.update({person.id : 0})
+        commissionDict.update({person.id : 0})
+    for sale in sales:
+        seller = sale.salesperson
+        productID = sale.product
+        price = Product.objects.get(id=productID).sale_price
+        discounts = Discount.objects.all().filter(product=productID).filter(end_date__gte=sale.sale_date).filter(begin_date__lte=sale.sale_date)
+        discount = None
+        for disc in discounts:
+            discount = disc.discount_percentage
+        if discount is not None:
+            price -= price * (discount/100)
+        commission =  price * (Product.objects.get(id=productID).commision_percentage/100)
+        totalDict[seller] += price
+        commissionDict[seller] += commission
+        data = []
+        for person_id in nameDict:
+            data.append({
+            'key' : person_id,
+            'name' : nameDict[person_id],
+            'total' : totalDict[person_id],
+            'commission' : commissionDict[person_id]
+        })
+    
+    return render(request, 'report.html', {'manager_id' : request.POST.get('manager_id'), 'data' : data})
+
 

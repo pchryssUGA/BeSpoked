@@ -24,5 +24,6 @@ urlpatterns = [
     path("manager/", views.manager),
     path("manager/view/", views.view),
     path("manager/edit/", views.edit),
-    path("manager/result/", views.result)
+    path("manager/result/", views.result),
+    path("manager/report/", views.report)
 ]

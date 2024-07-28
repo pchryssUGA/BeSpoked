@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block title %} Manager Portal {% endblock%}
+{% block content %}
+<div class="manager_portal_div">
+    <div class="title_div">
+        <form action='../' method='POST' style='display:contents'>
+            {% csrf_token %}
+            <div class="form-group">
+                <input type='hidden' name='status', value='logged_in'>
+                <input type='hidden' name='manager_id', value=' {{ manager_id }}'>
+                <button type="submit" class="btn btn-primary">Back To Portal</button>
+            </div>
+        </form>
+    </div>
+    <div class="view_content_div"> 
+        <div class="view_database_div">
+            <table class='data_table table table-striped' border='1'>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Total Amount</th>
+                <th>Commission</th>
+                {% for person in data %}
+                <tr>
+                    <td>{{ person.key }}</td>
+                    <td>{{ person.name }}</td>
+                    <td>{{ person.total }}</td>
+                    <td>{{ person.commission }}</td>
+                <tr>
+                {% endfor %}
+                
+            </table>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
