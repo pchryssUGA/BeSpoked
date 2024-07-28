@@ -2,19 +2,94 @@
 {% block content %}
 <div class="manager_portal_div">
     <div class="title_div">
-        <h1 class="title_text"></h1>
+        <form action='../view/' method='POST' style='display:contents'>
+            {% csrf_token %}
+            <div class="form-group">
+                <input type='hidden' name='manager_id', value=' {{ manager_id }}'>
+                <input type='hidden' name='view_type' value='{{ form_type }}'>
+                <button type="submit" class="btn btn-primary">Back To View</button>
+            </div>
+        </form>
     </div>
-    {% csrf_token %}
-    <h1>{{ value }}</h1>
     <div class="view_content_div"> 
         <div class="view_database_div">
+                <input type='hidden' name='status', value='checking_values'>
+                <input type='hidden' name='edit_type', value='{{ form_type }}'>
+                <input type='hidden' name='id', value='{{ value.id }}'>
+                {% csrf_token %}
+                {% if form_type == 'product' %}
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input  class="form-control" name='name' value="{{ value.name }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Manufacturer</label>
+                        <input  class="form-control" name='manufacturer' value="{{ value.manufacturer }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Style</label>
+                        <input  class="form-control" name='style' value="{{ value.style }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Purchase Price</label>
+                        <input  class="form-control" name='purchase_price' value="{{ value.purchase_price }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Sale Price</label>
+                        <input  class="form-control" name='sale_price' value="{{ value.sale_price }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Quantity On Hand</label>
+                        <input  class="form-control" name='quantity_on_hand' value="{{ value.quantity_on_hand }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Commision Percentage</label>
+                        <input  class="form-control" name='commission_percentage' value="{{ value.commision_percentage }}">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                {% elif form_type == 'salesperon' %}
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input  class="form-control" name='name' value="{{ value.name }}">
+                    </div>
+                    <div class="form-group">
+                        <label>First</label>
+                        <input  class="form-control" name='manufacturer' value="{{ value.first_name }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Last</label>
+                        <input  class="form-control" name='style' value="{{ value.last_name }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input  class="form-control" name='purchase_price' value="{{ value.address }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input  class="form-control" name='sale_price' value="{{ value.phone }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Start Date</label>
+                        <input  class="form-control" name='quantity_on_hand' value="{{ value.start_date }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Termination Date</label>
+                        <input  class="form-control" name='commission_percentage' value="{{ value.termination_date }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Manager_ID</label>
+                        <input  class="form-control" name='commission_percentage' value="{{ value.manager_id }}">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                {% endif %}
+              </form>
         </div>
     </div>
 
 </div>
 
 {% endblock %}
-
-{% for val in values %}
-<tr>{{ val }}</td>
-{% endfor %}

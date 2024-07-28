@@ -2,15 +2,23 @@
 {% block content %}
 <div class="manager_portal_div">
     <div class="title_div">
-        <h1 class="title_text"></h1>
+        <form action='../' method='POST' style='display:contents'>
+            {% csrf_token %}
+            <div class="form-group">
+                <input type='hidden' name='status', value='logged_in'>
+                <input type='hidden' name='manager_id', value=' {{ manager_id }}'>
+                <button type="submit" class="btn btn-primary">Back To Portal</button>
+            </div>
+        </form>
     </div>
     <div class="view_content_div"> 
         <div class="view_database_div">
             <table class='data_table table table-striped' border='1'>
-                <form action='edit/' method='POST' style='display:contents'>
+                <form action='../edit/' method='POST' style='display:contents'>
+                    <input type='hidden' name='manager_id', value=' {{ manager_id }}'>
                     {% csrf_token %}
                     {% if table_type == 'product' %}
-                        <input type='hidden' name='edit_type', value='Product'>
+                        <input type='hidden' name='edit_type', value='product'>
                         <tr>
                             <th></th>
                             <th>ID</th>
@@ -36,7 +44,7 @@
                                 <td>{{ val.commision_percentage }}</td>                            </tr>
                         {% endfor %}
                     {% elif table_type == 'salesperson' %}
-                        <input type='hidden' name='edit_type', value='Salesperson'>
+                        <input type='hidden' name='edit_type', value='salesperson'>
                         <tr>
                             <th></th>
                             <th>ID</th>
@@ -63,7 +71,7 @@
                             </tr>
                         {% endfor %}
                     {% elif table_type == 'customer' %}
-                        <input type='hidden' name='edit_type', value='Customer'>
+                        <input type='hidden' name='edit_type', value='customer'>
                         <tr>
                             <th></th>
                             <th>ID</th>
@@ -86,7 +94,7 @@
                             </tr>
                         {% endfor %}
                     {% elif table_type == 'sale' %}
-                        <input type='hidden' name='edit_type', value='Sale'>
+                        <input type='hidden' name='edit_type', value='sale'>
                         <tr>
                             <th></th>
                             <th>ID</th>
@@ -107,7 +115,7 @@
                             </tr>
                         {% endfor %}
                     {% elif table_type == 'discount' %}
-                        <input type='hidden' name='edit_type', value='Discount'>
+                        <input type='hidden' name='edit_type', value='discount'>
                         <tr>
                             <th></th>
                             <th>ID</th>
@@ -138,7 +146,3 @@
 </div>
 
 {% endblock %}
-
-{% for val in values %}
-<tr>{{ val }}</td>
-{% endfor %}

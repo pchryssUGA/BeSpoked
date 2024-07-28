@@ -13,23 +13,28 @@
             <div class="list">
                 <form action='view/' method='POST'> 
                     {% csrf_token %}
-                    <input class='input_item' type='submit' name='view_type' value='Products'>
+                    <input type='hidden' name='manager_id', value='{{ man.id }}'>
+                    <input class='input_item' type='submit' name='view_type' value='product'>
                 </form>
                 <form action='view/' method='POST'>                    
                     {% csrf_token %}
-                    <input class='input_item' type='submit' name='view_type' value='Salespersons'>
+                    <input type='hidden' name='manager_id', value='{{ man.id }}'>
+                    <input class='input_item' type='submit' name='view_type' value='salesperson'>
                 </form>
                 <form action='view/' method='POST'>                    
                     {% csrf_token %}
-                    <input class='input_item' type='submit' name='view_type' value='Customers'>
+                    <input type='hidden' name='manager_id', value='{{ man.id }}'>
+                    <input class='input_item' type='submit' name='view_type' value='sustomer'>
                 </form>
                 <form action='view/' method='POST'>
-                    {% csrf_token %}                    
-                    <input class='input_item' type='submit' name='view_type' value='Sales'>
+                    {% csrf_token %}                 
+                    <input type='hidden' name='manager_id', value='{{ man.id }}'>
+                    <input class='input_item' type='submit' name='view_type' value='sale'>
                 </form>
                 <form action='view/' method='POST'>
-                    {% csrf_token %}                    
-                    <input class='input_item' type='submit' name='view_type' value='Discounts'>
+                    {% csrf_token %}    
+                    <input type='hidden' name='manager_id', value='{{ man.id }}'>
+                    <input class='input_item' type='submit' name='view_type' value='discount'>
                 </form>
             </div>
         </div>
