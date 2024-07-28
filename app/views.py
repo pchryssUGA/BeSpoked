@@ -44,11 +44,11 @@ def edit(request):
             q = Product.objects.all().filter(id=int(request.POST.get('edit_id'))).first()
         elif form_type == 'salesperson':
             q = Salesperson.objects.all().filter(id=int(request.POST.get('edit_id'))).first()
-        elif request.POST.get('view_type') == 'customer':
+        elif form_type == 'customer':
             q = Customer.objects.all().filter(id=int(request.POST.get('edit_id'))).first()
-        elif request.POST.get('view_type') == 'sale':
+        elif form_type == 'sale':
             q = Sale.objects.all().filter(id=int(request.POST.get('edit_id'))).first()
-        elif request.POST.get('view_type') == 'discount':
+        elif form_type == 'discount':
             q = Discount.objects.all().filter(id=int(request.POST.get('edit_id'))).first()
         return render(request, 'edit.html', {'value' : q, 'form_type' : form_type, 'manager_id' : request.POST.get('manager_id')})
     return redirect(request, 'manager.html')

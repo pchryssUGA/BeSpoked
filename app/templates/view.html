@@ -14,12 +14,7 @@
     <div class="view_content_div"> 
         <div class="view_database_div">
             <table class='data_table table table-striped' border='1'>
-                <form action='../edit/' method='POST' style='display:contents'>
-                    <input type='hidden' name='manager_id', value=' {{ manager_id }}'>
-                    {% csrf_token %}
-                    {% if table_type == 'product' %}
-                        <input type='hidden' name='edit_type', value='product'>
-                        <tr>
+                    {% if table_type == 'product' %}                        <tr>
                             <th></th>
                             <th>ID</th>
                             <th>Name</th>
@@ -31,17 +26,24 @@
                             <th>Commision</th>
                         </tr>
                         {% for val in values %}
-                                <input type='hidden' name='edit_id', value='{{ val.id }}'>
-                                <tr>
-                                <td><input class='edit_button' type='submit' value='Edit'></td>
-                                <td>{{ val.id }}</td>
-                                <td>{{ val.name }}</td>
-                                <td>{{ val.manufacturer }}</td>
-                                <td>{{ val.style }}</td>
-                                <td>{{ val.purchase_price }}</td>
-                                <td>{{ val.sale_price }}</td>                    
-                                <td>{{ val.quantity_on_hand }}</td>
-                                <td>{{ val.commision_percentage }}</td>                            </tr>
+                            <tr>                            
+                            <td>
+                                <form action='../edit/' method='POST' style='display:contents'>
+                                    {% csrf_token %}
+                                    <input type='hidden' name='edit_type', value='{{ table_type }}'>
+                                    <input type='hidden' name='manager_id', value=' {{ manager_id }}'>
+                                    <input type='hidden' name='edit_id', value='{{ val.id }}'>
+                                    <input class='edit_button' type='submit' value='Edit'></td>
+                                </form>
+                            </td>
+                            <td>{{ val.id }}</td>
+                            <td>{{ val.name }}</td>
+                            <td>{{ val.manufacturer }}</td>
+                            <td>{{ val.style }}</td>
+                            <td>{{ val.purchase_price }}</td>
+                            <td>{{ val.sale_price }}</td>                    
+                            <td>{{ val.quantity_on_hand }}</td>
+                            <td>{{ val.commision_percentage }}</td>                            </tr>
                         {% endfor %}
                     {% elif table_type == 'salesperson' %}
                         <input type='hidden' name='edit_type', value='salesperson'>
@@ -59,7 +61,15 @@
                         {% for val in values %}                        
                             <input type='hidden' name='edit_id', value='{{ val.id }}'>
                             <tr>
-                                <td><input class='edit_button' type='submit' value='Edit'></td>
+                                <td>
+                                    <form action='../edit/' method='POST' style='display:contents'>
+                                        {% csrf_token %}
+                                        <input type='hidden' name='edit_type', value='{{ table_type }}'>
+                                        <input type='hidden' name='manager_id', value=' {{ manager_id }}'>
+                                        <input type='hidden' name='edit_id', value='{{ val.id }}'>
+                                        <input class='edit_button' type='submit' value='Edit'></td>
+                                    </form>
+                                </td>
                                 <td>{{ val.id }}</td>
                                 <td>{{ val.last_name }}</td>
                                 <td>{{ val.first_name }}</td>
@@ -84,7 +94,15 @@
                         {% for val in values %}
                         <input type='hidden' name='edit_id', value='{{ val.id }}'>
                             <tr>
-                                <td><input class='edit_button' type='submit' value='Edit'></td>
+                                <td>
+                                    <form action='../edit/' method='POST' style='display:contents'>
+                                        {% csrf_token %}
+                                        <input type='hidden' name='edit_type', value='{{ table_type }}'>
+                                        <input type='hidden' name='manager_id', value=' {{ manager_id }}'>
+                                        <input type='hidden' name='edit_id', value='{{ val.id }}'>
+                                        <input class='edit_button' type='submit' value='Edit'></td>
+                                    </form>
+                                </td>
                                 <td>{{ val.id }}</td>
                                 <td>{{ val.last_name }}</td>
                                 <td>{{ val.first_name }}</td>
@@ -106,7 +124,15 @@
                         {% for val in values %}
                             <input type='hidden' name='edit_id', value='{{ val.id }}'>
                             <tr>
-                                <td><input class='edit_button' type='submit' value='Edit'></td>
+                                <td>
+                                    <form action='../edit/' method='POST' style='display:contents'>
+                                        {% csrf_token %}
+                                        <input type='hidden' name='edit_type', value='{{ table_type }}'>
+                                        <input type='hidden' name='manager_id', value=' {{ manager_id }}'>
+                                        <input type='hidden' name='edit_id', value='{{ val.id }}'>
+                                        <input class='edit_button' type='submit' value='Edit'></td>
+                                    </form>
+                                </td>
                                 <td>{{ val.id }}</td>
                                 <td>{{ val.product }}</td>
                                 <td>{{ val.salesperson }}</td>
@@ -127,7 +153,15 @@
                         {% for val in values %}
                             <input type='hidden' name='edit_id', value='{{ val.id }}'>
                             <tr>
-                                <td><input class='edit_button' type='submit' value='Edit'></td>
+                                <td>
+                                    <form action='../edit/' method='POST' style='display:contents'>
+                                        {% csrf_token %}
+                                        <input type='hidden' name='edit_type', value='{{ table_type }}'>
+                                        <input type='hidden' name='manager_id', value=' {{ manager_id }}'>
+                                        <input type='hidden' name='edit_id', value='{{ val.id }}'>
+                                        <input class='edit_button' type='submit' value='Edit'></td>
+                                    </form>
+                                </td>
                                 <td>{{ val.id }}</td>
                                 <td>{{ val.product }}</td>
                                 <td>{{ val.begin_date }}</td>
