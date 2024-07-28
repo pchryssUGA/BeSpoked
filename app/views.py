@@ -41,16 +41,19 @@ def edit(request):
     if request.method == 'POST':
         q = None
         form_type = request.POST.get('edit_type')
-        if form_type == 'product':
-            q = Product.objects.all().filter(id=int(request.POST.get('edit_id'))).first()
-        elif form_type == 'salesperson':
-            q = Salesperson.objects.all().filter(id=int(request.POST.get('edit_id'))).first()
-        elif form_type == 'customer':
-            q = Customer.objects.all().filter(id=int(request.POST.get('edit_id'))).first()
-        elif form_type == 'sale':
-            q = Sale.objects.all().filter(id=int(request.POST.get('edit_id'))).first()
-        elif form_type == 'discount':
-            q = Discount.objects.all().filter(id=int(request.POST.get('edit_id'))).first()
+        edit_id = request.POST.get('edit_id')
+        print(edit_id)
+        if edit_id != 'new':
+            if form_type == 'product':
+                q = Product.objects.all().filter(id=int(edit_id)).first()
+            elif form_type == 'salesperson':
+                q = Salesperson.objects.all().filter(id=int(edit_id)).first()
+            elif form_type == 'customer':
+                q = Customer.objects.all().filter(id=int(edit_id)).first()
+            elif form_type == 'sale':
+                q = Sale.objects.all().filter(id=int(edit_id)).first()
+            elif form_type == 'discount':
+                q = Discount.objects.all().filter(id=int(edit_id)).first()
         return render(request, 'edit.html', {'value' : q, 'form_type' : form_type, 'manager_id' : request.POST.get('manager_id')})
     return redirect(request, 'manager.html')
 
@@ -60,7 +63,10 @@ def result(request):
             nm = request.POST.get('name')
             if Product.objects.all().filter(name=nm).first() is not None:
                 return render(request, 'result.html', {'result': 'Failed. [Product Name Taken]'})  
-            prod = Product.objects.get(id=int(request.POST.get('id')))    
+            if request.POST.get('change_type') == 'change':
+                prod = Product.objects.get(id=int(request.POST.get('id'))) 
+            else:
+                prod = Product()
             prod.name = nm
             prod.manufacturer = request.POST.get('manufacturer')
             prod.style = request.POST.get('style')
@@ -73,7 +79,10 @@ def result(request):
         elif request.POST.get('edit_type') == 'salesperson':
             if Salesperson.objects.all().filter(first_name=request.POST.get('first_name')).filter(last_name=request.POST.get('last_name')).first() is not None:
                 return render(request, 'result.html', {'result': 'Failed. [Salesperson Name Taken]'})  
-            person = Salesperson.objects.get(id=int(request.POST.get('id')))    
+            if request.POST.get('change_type') == 'change':
+                person = Salesperson.objects.get(id=int(request.POST.get('id'))) 
+            else:
+                person = Salesperson()
             person.first_name = request.POST.get('first_name')
             person.last_name = request.POST.get('last_name')
             person.address = request.POST.get('address')
@@ -87,8 +96,11 @@ def result(request):
             
         elif request.POST.get('edit_type') == 'customer':
             if Customer.objects.all().filter(first_name=request.POST.get('first_name')).filter(last_name=request.POST.get('last_name')).first() is not None:
-                return render(request, 'result.html', {'result': 'Failed. [Salesperson Name Taken]'})  
-            customer = Customer.objects.get(id=int(request.POST.get('id')))    
+                return render(request, 'result.html', {'result': 'Failed. [Salesperson Name Taken]'}) 
+            if request.POST.get('change_type') == 'change':
+                customer = Customer.objects.get(id=int(request.POST.get('id'))) 
+            else:
+                customer = Customer()
             customer.first_name = request.POST.get('first_name')
             customer.last_name = request.POST.get('last_name')
             customer.address = request.POST.get('address')
@@ -97,7 +109,10 @@ def result(request):
             customer.save() 
             
         elif request.POST.get('edit_type') == 'sale':
-            sale = Sale.objects.get(id=int(request.POST.get('id')))    
+            if request.POST.get('change_type') == 'change':
+                sale = Sale.objects.get(id=int(request.POST.get('id'))) 
+            else:
+                sale = Sale() 
             sale.product = int(request.POST.get('product'))
             sale.salesperson = int(request.POST.get('salesperson'))
             sale.customer = int(request.POST.get('customer'))
@@ -105,7 +120,10 @@ def result(request):
             sale.save() 
             
         elif request.POST.get('edit_type') == 'discount':
-            discount = Discount.objects.get(id=int(request.POST.get('id')))    
+            if request.POST.get('change_type') == 'change':
+                discount = Discount.objects.get(id=int(request.POST.get('id'))) 
+            else:
+                discount = Discount()  
             discount.product = int(request.POST.get('product'))
             discount.begin_date = datetime.strptime(request.POST.get('begin_date'), '%m/%d/%y').date()
             discount.end_date = datetime.strptime(request.POST.get('end_date'), '%m/%d/%y').date()

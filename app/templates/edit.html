@@ -13,141 +13,281 @@
     </div>
     <div class="view_content_div"> 
         <div class="view_database_div">
-            <form action='../result/' method='POST' style='display:contents'>
-                <input type='hidden' name='status', value='checking_values'>
-                <input type='hidden' name='edit_type', value='{{ form_type }}'>
-                <input type='hidden' name='id', value='{{ value.id }}'>
-                {% csrf_token %}
-                {% if form_type == 'product' %}
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input  class="form-control" name='name' value="{{ value.name }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Manufacturer</label>
-                        <input  class="form-control" name='manufacturer' value="{{ value.manufacturer }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Style</label>
-                        <input  class="form-control" name='style' value="{{ value.style }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Purchase Price</label>
-                        <input  class="form-control" name='purchase_price' value="{{ value.purchase_price }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Sale Price</label>
-                        <input  class="form-control" name='sale_price' value="{{ value.sale_price }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Quantity On Hand</label>
-                        <input  class="form-control" name='quantity_on_hand' value="{{ value.quantity_on_hand }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Commision Percentage</label>
-                        <input  class="form-control" name='commission_percentage' value="{{ value.commision_percentage }}">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                {% elif form_type == 'salesperson' %}
-                    <div class="form-group">
-                        <label>First</label>
-                        <input  class="form-control" name='first_name' value="{{ value.first_name }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Last</label>
-                        <input  class="form-control" name='last_name' value="{{ value.last_name }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Address</label>
-                        <input  class="form-control" name='address' value="{{ value.address }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <input  class="form-control" name='phone' value="{{ value.phone }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Start Date</label>
-                        <input  class="form-control" name='start_date' value="{{ value.start_date }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Termination Date</label>
-                        <input  class="form-control" name='termination_date' value="{{ value.termination_date }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Manager_ID</label>
-                        <input  class="form-control" name='manager_id' value="{{ value.manager_id }}">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                {% elif form_type == 'customer' %}
-                    <div class="form-group">
-                        <label>First</label>
-                        <input  class="form-control" name='first_name' value="{{ value.first_name }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Last</label>
-                        <input  class="form-control" name='last_name' value="{{ value.last_name }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Address</label>
-                        <input  class="form-control" name='address' value="{{ value.address }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <input  class="form-control" name='phone' value="{{ value.phone }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Start Date</label>
-                        <input  class="form-control" name='start_date' value="{{ value.start_date }}">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                {% elif form_type == 'sale' %}
-                    <div class="form-group">
-                        <label>Product ID</label>
-                        <input  class="form-control" name='product' value="{{ value.product }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Salesperson ID</label>
-                        <input  class="form-control" name='salesperson' value="{{ value.salesperson }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Customer ID</label>
-                        <input  class="form-control" name='customer' value="{{ value.customer }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Sale Date</label>
-                        <input  class="form-control" name='sale_date' value="{{ value.sale_date }}">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                {% elif form_type == 'discount' %}
-                    <div class="form-group">
-                        <label>Product ID</label>
-                        <input  class="form-control" name='product' value="{{ value.product }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Begin Date</label>
-                        <input  class="form-control" name='begin_date' value="{{ value.begin_date }}">
-                    </div>
-                    <div class="form-group">
-                        <label>End Date</label>
-                        <input  class="form-control" name='end_date' value="{{ value.end_date }}">
-                    </div>
-                    <div class="form-group">
-                        <label>Discount %</label>
-                        <input  class="form-control" name='discount_percentage' value="{{ value.discount_percentage }}">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                {% endif %}
-              </form>
+            {% if value == None%}            
+                <form action='../result/' method='POST' style='display:contents'>
+                    {% csrf_token %}
+                    <input type='hidden' name='status', value='checking_values'>
+                    <input type='hidden' name='edit_type', value='{{ form_type }}'>
+                    <input type='hidden' name='id', value='{{ value.id }}'>
+                    <input type='hidden' name='change_type', value='new'>
+                    {% if form_type == 'product' %}
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input  class="form-control" name='name' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Manufacturer</label>
+                            <input  class="form-control" name='manufacturer' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Style</label>
+                            <input  class="form-control" name='style' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Purchase Price</label>
+                            <input  class="form-control" name='purchase_price' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Sale Price</label>
+                            <input  class="form-control" name='sale_price' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Quantity On Hand</label>
+                            <input  class="form-control" name='quantity_on_hand' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Commision Percentage</label>
+                            <input  class="form-control" name='commission_percentage' value="">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    {% elif form_type == 'salesperson' %}
+                        <div class="form-group">
+                            <label>First</label>
+                            <input  class="form-control" name='first_name' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Last</label>
+                            <input  class="form-control" name='last_name' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input  class="form-control" name='address' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input  class="form-control" name='phone' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Start Date</label>
+                            <input  class="form-control" name='start_date' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Termination Date</label>
+                            <input  class="form-control" name='termination_date' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Manager_ID</label>
+                            <input  class="form-control" name='manager_id' value="">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    {% elif form_type == 'customer' %}
+                        <div class="form-group">
+                            <label>First</label>
+                            <input  class="form-control" name='first_name' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Last</label>
+                            <input  class="form-control" name='last_name' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input  class="form-control" name='address' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input  class="form-control" name='phone' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Start Date</label>
+                            <input  class="form-control" name='start_date' value="">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    {% elif form_type == 'sale' %}
+                        <div class="form-group">
+                            <label>Product ID</label>
+                            <input  class="form-control" name='product' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Salesperson ID</label>
+                            <input  class="form-control" name='salesperson' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Customer ID</label>
+                            <input  class="form-control" name='customer' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Sale Date</label>
+                            <input  class="form-control" name='sale_date' value="">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    {% elif form_type == 'discount' %}
+                        <div class="form-group">
+                            <label>Product ID</label>
+                            <input  class="form-control" name='product' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Begin Date</label>
+                            <input  class="form-control" name='begin_date' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>End Date</label>
+                            <input  class="form-control" name='end_date' value="">
+                        </div>
+                        <div class="form-group">
+                            <label>Discount %</label>
+                            <input  class="form-control" name='discount_percentage' value="">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    {% endif %}
+                </form>
+            {% else %}
+                <form action='../result/' method='POST' style='display:contents'>
+                    {% csrf_token %}
+                    <input type='hidden' name='status', value='checking_values'>
+                    <input type='hidden' name='edit_type', value='{{ form_type }}'>
+                    <input type='hidden' name='id', value='{{ value.id }}'>
+                    <input type='hidden' name='change_type', value='change'>
+                    {% if form_type == 'product' %}
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input  class="form-control" name='name' value="{{ value.name }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Manufacturer</label>
+                            <input  class="form-control" name='manufacturer' value="{{ value.manufacturer }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Style</label>
+                            <input  class="form-control" name='style' value="{{ value.style }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Purchase Price</label>
+                            <input  class="form-control" name='purchase_price' value="{{ value.purchase_price }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Sale Price</label>
+                            <input  class="form-control" name='sale_price' value="{{ value.sale_price }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Quantity On Hand</label>
+                            <input  class="form-control" name='quantity_on_hand' value="{{ value.quantity_on_hand }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Commision Percentage</label>
+                            <input  class="form-control" name='commission_percentage' value="{{ value.commision_percentage }}">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    {% elif form_type == 'salesperson' %}
+                        <div class="form-group">
+                            <label>First</label>
+                            <input  class="form-control" name='first_name' value="{{ value.first_name }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Last</label>
+                            <input  class="form-control" name='last_name' value="{{ value.last_name }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input  class="form-control" name='address' value="{{ value.address }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input  class="form-control" name='phone' value="{{ value.phone }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Start Date</label>
+                            <input  class="form-control" name='start_date' value="{{ value.start_date }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Termination Date</label>
+                            <input  class="form-control" name='termination_date' value="{{ value.termination_date }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Manager_ID</label>
+                            <input  class="form-control" name='manager_id' value="{{ value.manager_id }}">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    {% elif form_type == 'customer' %}
+                        <div class="form-group">
+                            <label>First</label>
+                            <input  class="form-control" name='first_name' value="{{ value.first_name }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Last</label>
+                            <input  class="form-control" name='last_name' value="{{ value.last_name }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input  class="form-control" name='address' value="{{ value.address }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input  class="form-control" name='phone' value="{{ value.phone }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Start Date</label>
+                            <input  class="form-control" name='start_date' value="{{ value.start_date }}">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    {% elif form_type == 'sale' %}
+                        <div class="form-group">
+                            <label>Product ID</label>
+                            <input  class="form-control" name='product' value="{{ value.product }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Salesperson ID</label>
+                            <input  class="form-control" name='salesperson' value="{{ value.salesperson }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Customer ID</label>
+                            <input  class="form-control" name='customer' value="{{ value.customer }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Sale Date</label>
+                            <input  class="form-control" name='sale_date' value="{{ value.sale_date }}">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    {% elif form_type == 'discount' %}
+                        <div class="form-group">
+                            <label>Product ID</label>
+                            <input  class="form-control" name='product' value="{{ value.product }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Begin Date</label>
+                            <input  class="form-control" name='begin_date' value="{{ value.begin_date }}">
+                        </div>
+                        <div class="form-group">
+                            <label>End Date</label>
+                            <input  class="form-control" name='end_date' value="{{ value.end_date }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Discount %</label>
+                            <input  class="form-control" name='discount_percentage' value="{{ value.discount_percentage }}">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    {% endif %}
+                </form>
+            {% endif %}
         </div>
     </div>
 
