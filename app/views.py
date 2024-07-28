@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from app.models import Manager, Product, Salesperson, Sale, Discount, Customer
+from datetime import datetime
 
 
 # Manager View
@@ -57,22 +58,58 @@ def result(request):
     if request.method == 'POST':
         if request.POST.get('edit_type') == 'product':
             nm = request.POST.get('name')
-            man = request.POST.get('manufacturer')
-            sty = request.POST.get('style')
-            purchase = float(request.POST.get('purchase_price'))
-            sale= float(request.POST.get('sale_price'))
-            qty = int(request.POST.get('quantity_on_hand'))
-            commission = float(request.POST.get('commission_percentage'))
             if Product.objects.all().filter(name=nm).first() is not None:
                 return render(request, 'result.html', {'result': 'Failed. [Product Name Taken]'})  
             prod = Product.objects.get(id=int(request.POST.get('id')))    
             prod.name = nm
-            prod.manufacturer = man
-            prod.style = sty
-            prod.purchase_price = purchase
-            prod.sale_price = sale
-            prod.quantity_on_hand = qty
-            prod.commision_percentage = commission   
+            prod.manufacturer = request.POST.get('manufacturer')
+            prod.style = request.POST.get('style')
+            prod.purchase_price = float(request.POST.get('purchase_price'))
+            prod.sale_price = float(request.POST.get('sale_price'))
+            prod.quantity_on_hand = int(request.POST.get('quantity_on_hand'))
+            prod.commision_percentage = float(request.POST.get('commission_percentage'))  
             prod.save() 
+            
+        elif request.POST.get('edit_type') == 'salesperson':
+            if Salesperson.objects.all().filter(first_name=request.POST.get('first_name')).filter(last_name=request.POST.get('last_name')).first() is not None:
+                return render(request, 'result.html', {'result': 'Failed. [Salesperson Name Taken]'})  
+            person = Salesperson.objects.get(id=int(request.POST.get('id')))    
+            person.first_name = request.POST.get('first_name')
+            person.last_name = request.POST.get('last_name')
+            person.address = request.POST.get('address')
+            person.phone = request.POST.get('phone')
+            person.start_date = datetime.strptime(request.POST.get('start_date'), '%m/%d/%y').date()
+            termination_date = request.POST.get('termination_date')
+            if termination_date not in [None, '', 'None']:
+                person.termination_date = datetime.strptime(request.POST.get('termination_date'), '%m/%d/%y').date()
+            person.manager_id = int(request.POST.get('manager_id'))
+            person.save() 
+            
+        elif request.POST.get('edit_type') == 'customer':
+            if Customer.objects.all().filter(first_name=request.POST.get('first_name')).filter(last_name=request.POST.get('last_name')).first() is not None:
+                return render(request, 'result.html', {'result': 'Failed. [Salesperson Name Taken]'})  
+            customer = Customer.objects.get(id=int(request.POST.get('id')))    
+            customer.first_name = request.POST.get('first_name')
+            customer.last_name = request.POST.get('last_name')
+            customer.address = request.POST.get('address')
+            customer.phone = request.POST.get('phone')
+            customer.start_date = datetime.strptime(request.POST.get('start_date'), '%m/%d/%y').date()
+            customer.save() 
+            
+        elif request.POST.get('edit_type') == 'sale':
+            sale = Sale.objects.get(id=int(request.POST.get('id')))    
+            sale.product = int(request.POST.get('product'))
+            sale.salesperson = int(request.POST.get('salesperson'))
+            sale.customer = int(request.POST.get('customer'))
+            sale.sale_date = datetime.strptime(request.POST.get('sale_date'), '%m/%d/%y').date()
+            sale.save() 
+            
+        elif request.POST.get('edit_type') == 'discount':
+            discount = Discount.objects.get(id=int(request.POST.get('id')))    
+            discount.product = int(request.POST.get('product'))
+            discount.begin_date = datetime.strptime(request.POST.get('begin_date'), '%m/%d/%y').date()
+            discount.end_date = datetime.strptime(request.POST.get('end_date'), '%m/%d/%y').date()
+            discount.discount_percentage = float(request.POST.get('discount_percentage'))
+            discount.save() 
     return render(request, 'result.html', {'result': 'Success!'})
 
