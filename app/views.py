@@ -10,9 +10,15 @@ def manager(request):
         for man in q:
             if man.password == request.POST.get('password'):
                 return render(request, 'manager.html', {'man': man})
-    return redirect(request, 'manager.html')
+    return redirect(login)
 
 # Login portal for salespersons
 def login(request):
     return render(request, 'login.html')
+
+def view(request):
+    if request.method == 'POST':
+        return render(request, 'view.html')
+    return redirect(request, 'manager.html')
+
 
