@@ -90,8 +90,8 @@ body {
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height:100%;
-            width: 45%;
+            height:auto;
+            width: 70%;
             background-color: #00a694;
             border: solid;
             border-width: 5px;
@@ -134,19 +134,24 @@ body {
         justify-content: center;
         align-items: center;
         height:40%;
-        width: 90%;
+        width: 70%;
         background-color: #00a694;
         border: solid;
         border-width: 5px;
         border-color: black;
         border-radius: 20px;
         margin-top:2%;
+        text-align: center;
     }
 
         .quarter_div {
             display: flex;
             justify-content: center;
         }
+
+            .quarter_input {
+                width: 40%;
+            }
 
         .report_button_div {
             display: flex;

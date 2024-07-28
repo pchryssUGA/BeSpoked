@@ -8,45 +8,27 @@
     <div class="manager_content_div"> 
         <div class="manager_view_div">
             <div class="title_div">
-                <h1 class="manager_text">Update DB</h1>
+                <h1 class="manager_text">View Database</h1>
             </div>
             <div class="list">
-                <form method='POST'>                    
-                    <input class='input_item' type='submit' name='update_type' value='Products'>
-                </form>
-                <form method='POST'>                    
-                    <input class='input_item' type='submit' name='update_type' value='Salespersons'>
-                </form>
-                <form method='POST'>                    
-                    <input class='input_item' type='submit' name='update_type' value='Customers'>
-                </form>
-                <form method='POST'>                    
-                    <input class='input_item' type='submit' name='update_type' value='Sales'>
-                </form>
-                <form method='POST'>                    
-                    <input class='input_item' type='submit' name='update_type' value='Discounts'>
-                </form>
-            </div>
-        </div>
-
-        <div class="manager_view_div">
-            <div class="title_div">
-                <h1 class="manager_text">View DB</h1>
-            </div>
-            <div class="list">
-                <form method='POST'>                    
+                <form action='view/' method='POST'> 
+                    {% csrf_token %}
                     <input class='input_item' type='submit' name='view_type' value='Products'>
                 </form>
-                <form method='POST'>                    
+                <form action='view/' method='POST'>                    
+                    {% csrf_token %}
                     <input class='input_item' type='submit' name='view_type' value='Salespersons'>
                 </form>
-                <form method='POST'>                    
+                <form action='view/' method='POST'>                    
+                    {% csrf_token %}
                     <input class='input_item' type='submit' name='view_type' value='Customers'>
                 </form>
-                <form method='POST'>                    
+                <form action='view/' method='POST'>
+                    {% csrf_token %}                    
                     <input class='input_item' type='submit' name='view_type' value='Sales'>
                 </form>
-                <form method='POST'>                    
+                <form action='view/' method='POST'>
+                    {% csrf_token %}                    
                     <input class='input_item' type='submit' name='view_type' value='Discounts'>
                 </form>
             </div>
@@ -54,9 +36,9 @@
     </div>
     <div class="report_div">
         <form method='POST'>  
-            <h6 style='color:white'>Input Year and Quarter to generate comission report</h1> 
+            <h6 style='color:white'>Input Desired Year & Fiscal Quarter</h1> 
             <div class='quarter_div'>
-                <input name="year" value='2024'/>     <input name="quarter" value='Q3'/>
+                <input class="quarter_input" name="year" value='2024'/><input class="quarter_input"name="quarter" value='Q3'/>
             </div>
             <div class='report_button_div'>
                 <input class='report_button' type='submit' name='view_type' value='Generate Report'>

@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from app.models import Manager
+from app.models import Manager, Product, Salesperson, Sale, Discount, Customer
 
 
 # Manager View
@@ -18,7 +18,20 @@ def login(request):
 
 def view(request):
     if request.method == 'POST':
-        return render(request, 'view.html')
+        q = None
+        if request.POST.get('view_type') == 'Products':
+            q = Product.objects.all()
+        elif request.POST.get('view_type') == 'Salespersons':
+            q = Salesperson.objects.all()
+        elif request.POST.get('view_type') == 'Customers':
+            q = Customer.objects.all()
+        elif request.POST.get('view_type') == 'Sales':
+            q = Sale.objects.all()
+        elif request.POST.get('view_type') == 'Discounts':
+            q = Discount.objects.all()
+        for val in q:
+            print(val)
+        return render(request, 'view.html', {'values': q})
     return redirect(request, 'manager.html')
 
 
